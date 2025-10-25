@@ -1,0 +1,1254 @@
+{
+  "id": "a1f0ce61-6af9-4d06-bffc-72fec66d0978",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.Block": {
+      "name": "Block",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "pageId": {
+          "name": "pageId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "componentName": {
+          "name": "componentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Block_pageId_Page_id_fk": {
+          "name": "Block_pageId_Page_id_fk",
+          "tableFrom": "Block",
+          "tableTo": "Page",
+          "columnsFrom": [
+            "pageId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Block_componentName_Component_name_fk": {
+          "name": "Block_componentName_Component_name_fk",
+          "tableFrom": "Block",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "componentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Block_pageId_order_key": {
+          "name": "Block_pageId_order_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "pageId",
+            "order"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsCategory": {
+      "name": "cmsCategory",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "typeId": {
+          "name": "typeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsCategory_typeId_cmsType_id_fk": {
+          "name": "cmsCategory_typeId_cmsType_id_fk",
+          "tableFrom": "cmsCategory",
+          "tableTo": "cmsType",
+          "columnsFrom": [
+            "typeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsEntry": {
+      "name": "cmsEntry",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cmsTypeId": {
+          "name": "cmsTypeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "publishedAt": {
+          "name": "publishedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsEntry_cmsTypeId_cmsType_id_fk": {
+          "name": "cmsEntry_cmsTypeId_cmsType_id_fk",
+          "tableFrom": "cmsEntry",
+          "tableTo": "cmsType",
+          "columnsFrom": [
+            "cmsTypeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsEntryCategory": {
+      "name": "cmsEntryCategory",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cmsEntryId": {
+          "name": "cmsEntryId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cmsCategoryId": {
+          "name": "cmsCategoryId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsEntryCategory_cmsEntryId_cmsEntry_id_fk": {
+          "name": "cmsEntryCategory_cmsEntryId_cmsEntry_id_fk",
+          "tableFrom": "cmsEntryCategory",
+          "tableTo": "cmsEntry",
+          "columnsFrom": [
+            "cmsEntryId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "cmsEntryCategory_cmsCategoryId_cmsCategory_id_fk": {
+          "name": "cmsEntryCategory_cmsCategoryId_cmsCategory_id_fk",
+          "tableFrom": "cmsEntryCategory",
+          "tableTo": "cmsCategory",
+          "columnsFrom": [
+            "cmsCategoryId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsEntryContent": {
+      "name": "cmsEntryContent",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cmsEntryId": {
+          "name": "cmsEntryId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cmsFieldId": {
+          "name": "cmsFieldId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsEntryContent_cmsEntryId_cmsEntry_id_fk": {
+          "name": "cmsEntryContent_cmsEntryId_cmsEntry_id_fk",
+          "tableFrom": "cmsEntryContent",
+          "tableTo": "cmsEntry",
+          "columnsFrom": [
+            "cmsEntryId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "cmsEntryContent_cmsFieldId_cmsField_id_fk": {
+          "name": "cmsEntryContent_cmsFieldId_cmsField_id_fk",
+          "tableFrom": "cmsEntryContent",
+          "tableTo": "cmsField",
+          "columnsFrom": [
+            "cmsFieldId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsField": {
+      "name": "cmsField",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "cmsTypeId": {
+          "name": "cmsTypeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "uid": {
+          "name": "uid",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "blockPropMappedTo": {
+          "name": "blockPropMappedTo",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsField_cmsTypeId_cmsType_id_fk": {
+          "name": "cmsField_cmsTypeId_cmsType_id_fk",
+          "tableFrom": "cmsField",
+          "tableTo": "cmsType",
+          "columnsFrom": [
+            "cmsTypeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cmsType": {
+      "name": "cmsType",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "uid": {
+          "name": "uid",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tagline": {
+          "name": "tagline",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "siteDomain": {
+          "name": "siteDomain",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "spacer": {
+          "name": "spacer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "categorySpacer": {
+          "name": "categorySpacer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "homeSpacer": {
+          "name": "homeSpacer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "invertHeaderColor": {
+          "name": "invertHeaderColor",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "categoryInvertHeaderColor": {
+          "name": "categoryInvertHeaderColor",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "homeInvertHeaderColor": {
+          "name": "homeInvertHeaderColor",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "entryComponentName": {
+          "name": "entryComponentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "categoryComponentName": {
+          "name": "categoryComponentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "homeComponentName": {
+          "name": "homeComponentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cmsType_siteDomain_Site_domain_fk": {
+          "name": "cmsType_siteDomain_Site_domain_fk",
+          "tableFrom": "cmsType",
+          "tableTo": "Site",
+          "columnsFrom": [
+            "siteDomain"
+          ],
+          "columnsTo": [
+            "domain"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "cmsType_entryComponentName_Component_name_fk": {
+          "name": "cmsType_entryComponentName_Component_name_fk",
+          "tableFrom": "cmsType",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "entryComponentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "cmsType_categoryComponentName_Component_name_fk": {
+          "name": "cmsType_categoryComponentName_Component_name_fk",
+          "tableFrom": "cmsType",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "categoryComponentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "cmsType_homeComponentName_Component_name_fk": {
+          "name": "cmsType_homeComponentName_Component_name_fk",
+          "tableFrom": "cmsType",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "homeComponentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Component": {
+      "name": "Component",
+      "schema": "",
+      "columns": {
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Content": {
+      "name": "Content",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blockId": {
+          "name": "blockId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fieldId": {
+          "name": "fieldId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Content_blockId_Block_id_fk": {
+          "name": "Content_blockId_Block_id_fk",
+          "tableFrom": "Content",
+          "tableTo": "Block",
+          "columnsFrom": [
+            "blockId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Content_fieldId_Field_id_fk": {
+          "name": "Content_fieldId_Field_id_fk",
+          "tableFrom": "Content",
+          "tableTo": "Field",
+          "columnsFrom": [
+            "fieldId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Content_blockId_fieldId_key": {
+          "name": "Content_blockId_fieldId_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "blockId",
+            "fieldId"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Field": {
+      "name": "Field",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "componentName": {
+          "name": "componentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "structure": {
+          "name": "structure",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Field_componentName_Component_name_fk": {
+          "name": "Field_componentName_Component_name_fk",
+          "tableFrom": "Field",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "componentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.FooterContent": {
+      "name": "FooterContent",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "siteDomain": {
+          "name": "siteDomain",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fieldId": {
+          "name": "fieldId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "FooterContent_siteDomain_Site_domain_fk": {
+          "name": "FooterContent_siteDomain_Site_domain_fk",
+          "tableFrom": "FooterContent",
+          "tableTo": "Site",
+          "columnsFrom": [
+            "siteDomain"
+          ],
+          "columnsTo": [
+            "domain"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "FooterContent_fieldId_Field_id_fk": {
+          "name": "FooterContent_fieldId_Field_id_fk",
+          "tableFrom": "FooterContent",
+          "tableTo": "Field",
+          "columnsFrom": [
+            "fieldId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.HeaderContent": {
+      "name": "HeaderContent",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "siteDomain": {
+          "name": "siteDomain",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fieldId": {
+          "name": "fieldId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "value": {
+          "name": "value",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "HeaderContent_siteDomain_Site_domain_fk": {
+          "name": "HeaderContent_siteDomain_Site_domain_fk",
+          "tableFrom": "HeaderContent",
+          "tableTo": "Site",
+          "columnsFrom": [
+            "siteDomain"
+          ],
+          "columnsTo": [
+            "domain"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "HeaderContent_fieldId_Field_id_fk": {
+          "name": "HeaderContent_fieldId_Field_id_fk",
+          "tableFrom": "HeaderContent",
+          "tableTo": "Field",
+          "columnsFrom": [
+            "fieldId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Image": {
+      "name": "Image",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Image_userId_User_id_fk": {
+          "name": "Image_userId_User_id_fk",
+          "tableFrom": "Image",
+          "tableTo": "User",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Page": {
+      "name": "Page",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "siteDomain": {
+          "name": "siteDomain",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "route": {
+          "name": "route",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "header": {
+          "name": "header",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "footer": {
+          "name": "footer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "spacer": {
+          "name": "spacer",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "invertHeaderColor": {
+          "name": "invertHeaderColor",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Page_siteDomain_Site_domain_fk": {
+          "name": "Page_siteDomain_Site_domain_fk",
+          "tableFrom": "Page",
+          "tableTo": "Site",
+          "columnsFrom": [
+            "siteDomain"
+          ],
+          "columnsTo": [
+            "domain"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "Page_siteDomain_route_key": {
+          "name": "Page_siteDomain_route_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "siteDomain",
+            "route"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Site": {
+      "name": "Site",
+      "schema": "",
+      "columns": {
+        "domain": {
+          "name": "domain",
+          "type": "varchar(191)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userId": {
+          "name": "userId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "footerComponentName": {
+          "name": "footerComponentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "headerComponentName": {
+          "name": "headerComponentName",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "backgroundColor1": {
+          "name": "backgroundColor1",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#f2f2f2'"
+        },
+        "backgroundColor2": {
+          "name": "backgroundColor2",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#e5e7eb'"
+        },
+        "color1": {
+          "name": "color1",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#fb3640'"
+        },
+        "color1Hover": {
+          "name": "color1Hover",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#db1620'"
+        },
+        "color2": {
+          "name": "color2",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color2Hover": {
+          "name": "color2Hover",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color3": {
+          "name": "color3",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "color3Hover": {
+          "name": "color3Hover",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "footerBackgroundColor": {
+          "name": "footerBackgroundColor",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#d4d4d8'"
+        },
+        "footerTextColor": {
+          "name": "footerTextColor",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#71717a'"
+        },
+        "textColor": {
+          "name": "textColor",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#52525b'"
+        },
+        "titleColor": {
+          "name": "titleColor",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#050C0F'"
+        },
+        "headerBackgroundColor": {
+          "name": "headerBackgroundColor",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'#ffffff'"
+        },
+        "font2": {
+          "name": "font2",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "font3": {
+          "name": "font3",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sansFont": {
+          "name": "sansFont",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'bergern'"
+        },
+        "icon": {
+          "name": "icon",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'https://internaut.nyc3.cdn.digitaloceanspaces.com/favicon.ico'"
+        },
+        "deploymentId": {
+          "name": "deploymentId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "projectId": {
+          "name": "projectId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "googleId": {
+          "name": "googleId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "metaId": {
+          "name": "metaId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Site_userId_User_id_fk": {
+          "name": "Site_userId_User_id_fk",
+          "tableFrom": "Site",
+          "tableTo": "User",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Site_footerComponentName_Component_name_fk": {
+          "name": "Site_footerComponentName_Component_name_fk",
+          "tableFrom": "Site",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "footerComponentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "Site_headerComponentName_Component_name_fk": {
+          "name": "Site_headerComponentName_Component_name_fk",
+          "tableFrom": "Site",
+          "tableTo": "Component",
+          "columnsFrom": [
+            "headerComponentName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.Subdomain": {
+      "name": "Subdomain",
+      "schema": "",
+      "columns": {
+        "subdomain": {
+          "name": "subdomain",
+          "type": "varchar(191)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "siteDomain": {
+          "name": "siteDomain",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Subdomain_siteDomain_Site_domain_fk": {
+          "name": "Subdomain_siteDomain_Site_domain_fk",
+          "tableFrom": "Subdomain",
+          "tableTo": "Site",
+          "columnsFrom": [
+            "siteDomain"
+          ],
+          "columnsTo": [
+            "domain"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.User": {
+      "name": "User",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar(191)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "stripeCustomerId": {
+          "name": "stripeCustomerId",
+          "type": "varchar(191)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

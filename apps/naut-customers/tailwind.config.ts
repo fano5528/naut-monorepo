@@ -1,0 +1,96 @@
+import type { Config } from "tailwindcss";
+
+export default {
+	darkMode: ["class"],
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./app/**/*.{js,ts,jsx,tsx,mdx}",
+	],
+	theme: {
+		extend: {
+			width: {
+				'complete-sm': 'calc(100% - 192px)',
+				'complete': 'calc(100% - 48px)',
+			},
+			colors: {
+				background: 'hsl(var(--background))',
+				foreground: 'hsl(var(--foreground))',
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))'
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				border: 'hsl(var(--border))',
+				input: 'hsl(var(--input))',
+				ring: 'hsl(var(--ring))',
+				chart: {
+					'1': 'hsl(var(--chart-1))',
+					'2': 'hsl(var(--chart-2))',
+					'3': 'hsl(var(--chart-3))',
+					'4': 'hsl(var(--chart-4))',
+					'5': 'hsl(var(--chart-5))'
+				},
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
+				}, color1: 'hsl(var(--primary))',
+				color1Hover: 'hsl(var(--color1Hover))',
+				color2: 'hsl(var(--color2))',
+				color2Hover: 'hsl(var(--color2Hover))',
+				color3: 'hsl(var(--color3))',
+				color3Hover: 'hsl(var(--color3Hover))',
+				header: 'hsl(var(--headerBackground))',
+				footer: 'hsl(var(--footerBackground))',
+				footertext: 'hsl(var(--footerText))',
+				bg1: 'hsl(var(--background))',
+				bg2: 'hsl(var(--background2))',
+				title: 'hsl(var(--title))',
+				text: 'hsl(var(--text))',
+				naut: 'hsl(var(--naut))',
+				nautBg: 'hsl(var(--nautBg))',
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			}, fontFamily: {
+				sans: [`var(--font-sans)`],
+				font2: [`var(--font-font2)`],
+				font3: [`var(--font-font3)`],
+				bergern: [`var(--font-bergern)`],
+				mono: [`var(--font-dmMono)`],
+			}
+		}
+	},
+	plugins: [require("tailwindcss-animate")],
+} satisfies Config;

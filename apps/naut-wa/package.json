@@ -1,0 +1,36 @@
+{
+  "name": "naut-wa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node public/index.js",
+    "dev": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/node": "^22.15.17",
+    "@types/pg": "^8.15.1",
+    "drizzle-kit": "^0.31.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^1.3.22",
+    "@vercel/postgres": "^0.10.0",
+    "ai": "^4.3.16",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "openai": "^4.98.0",
+    "zod": "^3.24.4"
+  }
+}
