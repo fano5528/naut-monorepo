@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Local Env Files
+.env
+.env*.local
+
+# OS Files
+.DS_Store
