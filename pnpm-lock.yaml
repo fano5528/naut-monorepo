@@ -68,6 +68,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.1.7
         version: 1.2.8(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@radix-ui/react-visually-hidden':
+        specifier: ^1.1.0
+        version: 1.2.3(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@tanstack/react-table':
         specifier: ^8.20.6
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -316,9 +319,15 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.65.0(react@19.2.0))
+      '@naut/schemas':
+        specifier: workspace:*
+        version: link:../../packages/schemas
       '@radix-ui/react-accordion':
         specifier: ^1.2.2
         version: 1.2.12(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@radix-ui/react-visually-hidden':
+        specifier: ^1.1.0
+        version: 1.2.3(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@radix-ui/themes':
         specifier: ^3.2.0
         version: 3.2.1(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -367,6 +376,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
+      react-hook-form:
+        specifier: ^7.54.2
+        version: 7.65.0(react@19.2.0)
       react-scroll-parallax:
         specifier: ^3.4.5
         version: 3.5.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -476,6 +488,25 @@ importers:
         version: 4.20.6
       typescript:
         specifier: ^5.8.3
+        version: 5.9.3
+
+  packages/schemas:
+    dependencies:
+      '@vercel/postgres':
+        specifier: ^0.10.0
+        version: 0.10.0
+      drizzle-orm:
+        specifier: ^0.38.4
+        version: 0.38.4(@opentelemetry/api@1.9.0)(@types/pg@8.15.5)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(react@19.2.0)
+    devDependencies:
+      '@types/node':
+        specifier: ^20.19.23
+        version: 20.19.23
+      drizzle-kit:
+        specifier: ^0.31.1
+        version: 0.31.5
+      typescript:
+        specifier: ^5.7.3
         version: 5.9.3
 
 packages:
@@ -7369,7 +7400,7 @@ snapshots:
 
   '@types/pg@8.11.6':
     dependencies:
-      '@types/node': 20.19.23
+      '@types/node': 22.18.12
       pg-protocol: 1.10.3
       pg-types: 4.1.0
 
@@ -8374,7 +8405,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.38.0(jiti@2.6.1)))(eslint@9.38.0(jiti@2.6.1)):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.38.0(jiti@2.6.1)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -8425,7 +8456,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.38.0(jiti@2.6.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.38.0(jiti@2.6.1)))(eslint@9.38.0(jiti@2.6.1))
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.38.0(jiti@2.6.1))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3

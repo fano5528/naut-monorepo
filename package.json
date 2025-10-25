@@ -4,6 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "turbo run dev",
+    "dev:site": "turbo run dev --filter=naut-site",
+    "dev:customers": "turbo run dev --filter=naut-customers",
+    "dev:preview": "turbo run dev --filter=naut-preview",
+    "dev:wa": "turbo run dev --filter=naut-wa",
+    "build": "turbo run build",
+    "build:site": "turbo run build --filter=naut-site",
+    "build:customers": "turbo run build --filter=naut-customers",
+    "build:preview": "turbo run build --filter=naut-preview",
+    "build:wa": "turbo run build --filter=naut-wa",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

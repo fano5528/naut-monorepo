@@ -23,8 +23,8 @@ export default function RiordanBlock(props: {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0, amount: 0.3 }}
-            viewport={{ once: true }}
+            transition={{ delay: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="transition-none"
           >
             <Text
@@ -38,8 +38,8 @@ export default function RiordanBlock(props: {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, amount: 0.3 }}
-            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="transition-none"
           >
             <Text
@@ -54,8 +54,8 @@ export default function RiordanBlock(props: {
             className="mt-10 flex items-center justify-center gap-x-6 transition-none"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, amount: 0.3 }}
-            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <Link
               edit={props.edit}

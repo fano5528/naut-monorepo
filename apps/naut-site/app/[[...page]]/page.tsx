@@ -5,7 +5,7 @@ import { eq, and, isNotNull } from "drizzle-orm";
 
 // Local imports
 import { db } from '@/db';
-import { site, page, headerContent, footerContent, field, block, content, cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory } from '@/db/schema';
+import { site, page, headerContent, footerContent, field, block, content, cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory } from '@naut/schemas';
 /*import { SearchParams } from "@/lib/types";*/
 import TigerHeader from "@/components/headers/TigerHeader";
 import ChecoFooter from "@/components/footers/ChecoFooter";

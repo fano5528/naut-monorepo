@@ -28,8 +28,8 @@ export default function HarariBlock(props: Props) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0, amount: 0.3 }}
-              viewport={{ once: true }}
+              transition={{ delay: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               className="transition-none"
             >
               <Text
@@ -44,8 +44,8 @@ export default function HarariBlock(props: Props) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, amount: 0.3 }}
-                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
                 className="transition-none"
               >
                 <Text
@@ -64,8 +64,8 @@ export default function HarariBlock(props: Props) {
                 key={faq.question}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, amount: 0.3 }}
-                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
                 className="transition-none"
               >
                 {props.edit && <input type="hidden" name={`array_${props.reference.content}.${index}-answer`} value={JSON.stringify(faq.answer)} />}

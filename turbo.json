@@ -1,14 +1,28 @@
 {
     "$schema": "https://turborepo.org/schema.json",
-    "baseBranch": "origin/main",
-    "pipeline": {
+    "tasks": {
       "build": {
         "dependsOn": ["^build"],
-        "outputs": [".next/**", "dist/**"]
+        "outputs": [".next/**", "dist/**"],
+        "env": [
+          "DOMAIN",
+          "POSTGRES_URL",
+          "POSTGRES_PRISMA_URL",
+          "POSTGRES_URL_NON_POOLING",
+          "POSTGRES_USER",
+          "POSTGRES_HOST",
+          "POSTGRES_PASSWORD",
+          "POSTGRES_DATABASE",
+          "CLERK_SECRET_KEY",
+          "GOOGLE_ANALYTICS_ID",
+          "META_PIXEL_ID",
+          "BLOB_READ_WRITE_TOKEN"
+        ]
       },
       "lint": {},
       "dev": {
-        "cache": false
+        "cache": false,
+        "persistent": true
       }
     }
   }

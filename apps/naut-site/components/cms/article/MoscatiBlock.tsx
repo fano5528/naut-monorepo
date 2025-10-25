@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { eq, and } from "drizzle-orm";
-import { cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory, cmsEntryCategory } from "@/db/schema";
+import { cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory, cmsEntryCategory } from "@naut/schemas";
 import Image from "next/image";
 import Link from "next/link";
 import RichTextReader from "@/components/text/RichTextReader";

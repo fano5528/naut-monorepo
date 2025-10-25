@@ -8,7 +8,7 @@ import { getFonts, FontName } from "@/fonts/fonts"; // Dynamic font selection
 import "@/public/fontawesome/fontawesome.css"; // Icons
 import "@/public/fontawesome/solid.css"; // Icons
 import { db } from "@/db/index"; // Database
-import { site } from "@/db/schema"; // Database schema
+import { site } from "@naut/schemas"; // Database schema
 import { setVariables } from "@/utils/set-variables"; // Set variables like colors, fonts, etc.
 
 // Root layout
