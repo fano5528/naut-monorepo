@@ -1,0 +1,84 @@
+{
+  "name": "@naut/ui",
+  "version": "1.0.0",
+  "description": "Shared UI components for Naut applications",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./blocks/*": {
+      "import": "./dist/components/blocks/*.js",
+      "types": "./dist/components/blocks/*.d.ts"
+    },
+    "./headers/*": {
+      "import": "./dist/components/headers/*.js",
+      "types": "./dist/components/headers/*.d.ts"
+    },
+    "./heroes/*": {
+      "import": "./dist/components/heroes/*.js",
+      "types": "./dist/components/heroes/*.d.ts"
+    },
+    "./footers/*": {
+      "import": "./dist/components/footers/*.js",
+      "types": "./dist/components/footers/*.d.ts"
+    },
+    "./banners/*": {
+      "import": "./dist/components/banners/*.js",
+      "types": "./dist/components/banners/*.d.ts"
+    },
+    "./cms/*": {
+      "import": "./dist/components/cms/*.js",
+      "types": "./dist/components/cms/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@naut/schemas": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.1.6",
+    "framer-motion": "^12.0.6",
+    "@radix-ui/react-accordion": "^1.2.2",
+    "@radix-ui/react-alert-dialog": "^1.1.5",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-popover": "^1.1.13",
+    "@radix-ui/react-select": "^2.1.5",
+    "@radix-ui/react-separator": "^1.1.1",
+    "@radix-ui/react-slot": "^1.2.2",
+    "@radix-ui/react-switch": "^1.1.4",
+    "@radix-ui/react-toast": "^1.2.5",
+    "@radix-ui/react-tooltip": "^1.1.7",
+    "@radix-ui/react-visually-hidden": "^1.1.0",
+    "@tiptap/extension-color": "^2.11.4",
+    "@tiptap/extension-link": "^2.11.4",
+    "@tiptap/extension-text-style": "^2.11.4",
+    "@tiptap/extension-underline": "^2.11.4",
+    "@tiptap/react": "^2.11.4",
+    "@tiptap/starter-kit": "^2.11.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0",
+    "lucide-react": "^0.474.0",
+    "@heroicons/react": "^2.2.0"
+  },
+  "peerDependencies": {
+    "@vercel/postgres": "^0.10.0",
+    "drizzle-orm": "^0.39.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
+
