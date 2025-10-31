@@ -18,6 +18,8 @@ export default async function RootLayout({
   return (
     <ClerkProvider
       localization={esES}
+      signInUrl="/iniciar-sesion"
+      signUpUrl="/registrarse"
       appearance={{
         variables: {
           colorPrimary: "#2adf94",

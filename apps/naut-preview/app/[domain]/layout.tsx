@@ -1,6 +1,5 @@
 // Package imports
 import { eq } from "drizzle-orm";
-import Script from "next/script";
 
 // Local imports
 import "../globals.css"; // Tailwind + shadcn
@@ -8,7 +7,7 @@ import { getFonts, FontName } from "@/fonts/fonts"; // Dynamic font selection
 import "@/public/fontawesome/fontawesome.css"; // Icons
 import "@/public/fontawesome/solid.css"; // Icons
 import { db } from "@/db/index"; // Database
-import { site } from "@/db/schema"; // Database schema
+import { site } from "@naut/schemas"; // Database schema
 import { setVariables } from "@/utils/set-variables"; // Set variables like colors, fonts, etc.
 
 // Root layout
@@ -43,11 +42,12 @@ export default async function RootLayout({
   let fontClasses = "";
 
   fontClasses += fonts[siteObject[0].sansFont as FontName].variable;
-  siteObject[0].font2 && (fontClasses += " " + fonts[siteObject[0].font2 as FontName].variable);
-  siteObject[0].font3 && (fontClasses += " " + fonts[siteObject[0].font3 as FontName].variable);
-
-  const metaId = siteObject[0].metaId;
-  const googleId = siteObject[0].googleId;
+  if (siteObject[0].font2) {
+    fontClasses += " " + fonts[siteObject[0].font2 as FontName].variable;
+  }
+  if (siteObject[0].font3) {
+    fontClasses += " " + fonts[siteObject[0].font3 as FontName].variable;
+  }
 
   const variables = await setVariables(domain);
 

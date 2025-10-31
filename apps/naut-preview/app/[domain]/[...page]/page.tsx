@@ -1,10 +1,10 @@
 // Package imports
 import { Metadata } from "next";
-import { eq, and, isNotNull } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
 
 // Local imports
 import { db } from '@/db';
-import { site, page, headerContent, footerContent, field, block, content, cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory } from '@/db/schema';
+import { site, page, headerContent, footerContent, field, block, content, cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory } from '@naut/schemas';
 /*import { SearchParams } from "@/lib/types";*/
 import TigerHeader from "@/components/headers/TigerHeader";
 import ChecoFooter from "@/components/footers/ChecoFooter";
@@ -179,33 +179,49 @@ export async function generateMetadata(
     if (pageParams.page?.[1] == "entry") {
       const entryId = pageParams.page?.[2];
       
-      // Get title content in a single query using joins
-      const titleContent:any = await db
-        .select({
-          title: cmsEntryContent.value,
-          description: page.description,
-        })
-        .from(cmsEntry)
-        .innerJoin(cmsType, eq(cmsEntry.cmsTypeId, cmsType.id))
-        .innerJoin(cmsField, and(
-          eq(cmsField.cmsTypeId, cmsType.id),
-          eq(cmsField.name, "title")
-        ))
-        .innerJoin(cmsEntryContent, and(
-          eq(cmsEntryContent.cmsEntryId, cmsEntry.id),
-          eq(cmsEntryContent.cmsFieldId, cmsField.id)
-        ))
-        .innerJoin(page, eq(page.route, "/"))
-        .innerJoin(site, eq(site.domain, domain))
-        .where(eq(cmsEntry.id, parseInt(entryId)))
-        .limit(1);
-
+      // Get title content - simplified query approach
+      const entryData = await db.select().from(cmsEntry).where(eq(cmsEntry.id, parseInt(entryId))).limit(1);
+      if (!entryData[0]) {
+        const siteData = await db.select().from(site).where(eq(site.domain, domain));
         const homePageData = await db.select().from(page).where(eq(page.route, "/"));
+        return {
+          title: siteData[0]?.name,
+          description: homePageData[0]?.description,
+          icons: {
+            icon: siteData[0]?.icon,
+          },
+        };
+      }
+      
+      const cmsTypeData = await db.select().from(cmsType).where(eq(cmsType.id, entryData[0].cmsTypeId));
+      const titleField = await db.select().from(cmsField).where(and(
+        eq(cmsField.cmsTypeId, cmsTypeData[0].id),
+        eq(cmsField.name, "title")
+      ));
+      
+      if (!titleField[0]) {
+        const siteData = await db.select().from(site).where(eq(site.domain, domain));
+        const homePageData = await db.select().from(page).where(eq(page.route, "/"));
+        return {
+          title: siteData[0]?.name,
+          description: homePageData[0]?.description,
+          icons: {
+            icon: siteData[0]?.icon,
+          },
+        };
+      }
+      
+      const titleContent = await db.select().from(cmsEntryContent).where(and(
+        eq(cmsEntryContent.cmsEntryId, parseInt(entryId)),
+        eq(cmsEntryContent.cmsFieldId, titleField[0].id)
+      ));
+      
+      const homePageData = await db.select().from(page).where(eq(page.route, "/"));
       const siteData = await db.select().from(site).where(eq(site.domain, domain));
 
-      if (titleContent[0]) {
+      if (titleContent && titleContent[0]) {
         return {
-          title: titleContent[0].title.payload + " | " + siteData[0]?.name,
+          title: (titleContent[0].value as { payload: string }).payload + " | " + siteData[0]?.name,
           description: homePageData[0]?.description,
           icons: {
             icon: siteData[0]?.icon,

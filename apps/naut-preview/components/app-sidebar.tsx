@@ -14,7 +14,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import Image from "next/image"
-import { UserButton } from "@clerk/nextjs"
+// import { UserButton } from "@clerk/nextjs"
 
 interface Site {
   userId: string;
@@ -71,7 +71,7 @@ export function AppSidebar({ siteData, ...props }: AppSidebarProps) {
       </SidebarContent>
       <SidebarFooter className="border-t border-border p-4">
         <div className="flex items-center space-x-4">
-          <UserButton />
+          {/* <UserButton /> */}
           <div>
             <p className="text-sm font-medium">{siteData.name}</p>
             <p className="text-xs text-muted-foreground">{siteData.domain}</p>

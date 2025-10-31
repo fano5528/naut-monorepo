@@ -4,7 +4,7 @@ import Link from "../headerlink/Headerlink";
 import Text from "../text/Text";
 import { eq, desc, and, isNotNull } from "drizzle-orm";
 import { db } from "@/db";
-import { cmsEntry, cmsEntryCategory, cmsEntryContent, cmsCategory, cmsType, cmsField } from "@/db/schema";
+import { cmsEntry, cmsEntryCategory, cmsEntryContent, cmsCategory, cmsType, cmsField } from "@naut/schemas";
 
 // Add revalidation every minute
 export const revalidate = 60;

@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { cmsCategory, cmsEntry, cmsEntryCategory, cmsEntryContent, cmsField, cmsType } from "@/db/schema";
+import { cmsCategory, cmsEntry, cmsEntryCategory, cmsEntryContent, cmsField, cmsType } from "@naut/schemas";
 import { eq, and, desc, isNotNull } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";

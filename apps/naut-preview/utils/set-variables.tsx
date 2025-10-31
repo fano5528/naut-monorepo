@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { site } from '@/db/schema';
+import { site } from '@naut/schemas';
 import { eq } from 'drizzle-orm';
 import { formatHSL } from './color-utils';
 

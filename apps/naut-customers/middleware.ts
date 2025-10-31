@@ -4,7 +4,10 @@ const isPublicRoute = createRouteMatcher(['/iniciar-sesion(.*)', '/registrarse(.
 
 export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
-    await auth.protect()
+    const url = new URL(request.url)
+    await auth.protect({
+      unauthenticatedUrl: `${url.origin}/iniciar-sesion`
+    })
   }
 })
 

@@ -26,7 +26,7 @@ export default function HarariBlock(props: {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0, amount: 0.3 }}
+              transition={{ delay: 0 }}
               viewport={{ once: true }}
               className="transition-none"
             >
@@ -42,7 +42,7 @@ export default function HarariBlock(props: {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, amount: 0.3 }}
+                transition={{ delay: 0.2 }}
                 viewport={{ once: true }}
                 className="transition-none"
               >
@@ -62,7 +62,7 @@ export default function HarariBlock(props: {
                 key={faq.question}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, amount: 0.3 }}
+                transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="transition-none"
               >

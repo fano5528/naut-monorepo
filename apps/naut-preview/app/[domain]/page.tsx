@@ -1,10 +1,10 @@
 // Package imports
 import { Metadata } from "next";
-import { eq, and, isNotNull } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 
 // Local imports
 import { db } from '@/db';
-import { site, page, headerContent, footerContent, field, block, content, cmsEntry, cmsType, cmsEntryContent, cmsField, cmsCategory } from '@/db/schema';
+import { site, page, headerContent, footerContent, field, block, content } from '@naut/schemas';
 /*import { SearchParams } from "@/lib/types";*/
 import TigerHeader from "@/components/headers/TigerHeader";
 import ChecoFooter from "@/components/footers/ChecoFooter";
@@ -171,7 +171,7 @@ export async function generateMetadata(
   { params }: Props,
 ): Promise<Metadata> {
   // Get route from params
-  let route = "/";
+  const route = "/";
   const pageParams = await params;
   const domain = pageParams.domain;
 
@@ -243,7 +243,7 @@ export default async function Page({ params }: Props) {
   };
 
     // Get route from params of function
-    let route = "/";
+    const route = "/";
 
     // Get specific page data
     const pageData = await db.select().from(page).where(and(eq(page.siteDomain, domain), eq(page.route, route)));
